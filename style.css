@@ -4,18 +4,18 @@
 /* --- Estilos Generales --- */
 body {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #fce3ec, #ffe8cc);
+    background: linear-gradient(135deg, #fce3ec, #ffe8cc); /* Un fondo degradado suave */
     margin: 0;
-    padding: 15px; /* Reducimos el padding general para móviles */
+    padding: 20px;
     color: #333;
-    box-sizing: border-box; /* Buena práctica para que el padding no afecte el ancho */
 }
+
 .container {
-    width: 100%; /* El contenedor usa todo el ancho en móvil */
-    max-width: 800px; /* Mantiene el límite para escritorio */
+    max-width: 800px;
     margin: 0 auto;
     text-align: center;
 }
+
 /* --- Título Principal --- */
 h1 {
     font-family: 'Pacifico', cursive; /* Fuente "escrita a mano" para el título */
@@ -185,16 +185,4 @@ h1 {
         /* Dos columnas en tablets */
         grid-template-columns: repeat(2, 1fr);
     }
-}
-/* --- Ajuste para el botón de volver duplicado --- */
-#vista-carta-individual .btn-volver {
-    /* Centramos el botón que está solo */
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#vista-carta-individual .btn-volver:first-child {
-    /* Añade espacio entre el botón de arriba y el texto de la carta */
-    margin-bottom: 25px; 
 }
