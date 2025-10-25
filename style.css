@@ -4,18 +4,19 @@
 /* --- Estilos Generales --- */
 body {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #fce3ec, #ffe8cc); /* Un fondo degradado suave */
+    background: linear-gradient(135deg, #fce3ec, #ffe8cc);
     margin: 0;
-    padding: 20px;
+    padding: 15px; /* Reducimos el padding general para móviles */
     color: #333;
+    box-sizing: border-box; /* Buena práctica para que el padding no afecte el ancho */
 }
 
 .container {
-    max-width: 800px;
+    width: 100%; /* El contenedor usa todo el ancho en móvil */
+    max-width: 800px; /* Mantiene el límite para escritorio */
     margin: 0 auto;
     text-align: center;
 }
-
 /* --- Título Principal --- */
 h1 {
     font-family: 'Pacifico', cursive; /* Fuente "escrita a mano" para el título */

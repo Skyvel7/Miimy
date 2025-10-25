@@ -51,35 +51,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 playRandomSong();
             }
 
-            // 1. Carga el archivo HTML de la carta en segundo plano
+            // 1. Carga el archivo HTML de la carta
             const response = await fetch(url);
             if (!response.ok) throw new Error('No se pudo cargar la carta.');
             const cartaHtmlCompleto = await response.text();
 
-            // 2. Extrae SÓLO el contenido que queremos de ese HTML
+            // 2. Extrae SÓLO .carta-individual (que ahora INCLUYE el botón)
             const parser = new DOMParser();
             const doc = parser.parseFromString(cartaHtmlCompleto, 'text/html');
             const contenidoCarta = doc.querySelector('.carta-individual');
-            const botonVolver = doc.querySelector('.btn-volver');
 
-            if (!contenidoCarta || !botonVolver) {
-                throw new Error('El archivo de la carta no tiene el formato correcto.');
+            if (!contenidoCarta) {
+                throw new Error('El archivo de la carta no tiene la clase .carta-individual.');
             }
 
-            // 3. Inserta el contenido y el botón en nuestra "Vista 2"
-            vistaCartaIndividual.innerHTML = ''; // Limpia por si acaso
+            // 3. Limpia la vista e inserta el contenido completo
+            vistaCartaIndividual.innerHTML = '';
             vistaCartaIndividual.appendChild(contenidoCarta);
-            vistaCartaIndividual.appendChild(botonVolver);
 
-            // 4. Oculta la lista de cartas (Vista 1) y muestra la carta (Vista 2)
+            // 4. Cambia las vistas
             vistaListaCartas.style.display = 'none';
             vistaCartaIndividual.style.display = 'block';
 
-            // 5. IMPORTANTE: Le damos al nuevo "botón volver" su función
-            // Este botón ahora no recarga la página, solo llama a nuestra función
-            vistaCartaIndividual.querySelector('.btn-volver').addEventListener('click', (e) => {
-                e.preventDefault(); // Previene que el enlace 'href' funcione
-                mostrarListaCartas();
+            // 5. Asigna la función de "volver" a CUALQUIER botón .btn-volver
+            //    que esté dentro de la carta que acabamos de cargar.
+            vistaCartaIndividual.querySelectorAll('.btn-volver').forEach(boton => {
+                boton.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    mostrarListaCartas();
+                });
             });
 
         } catch (error) {
