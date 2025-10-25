@@ -1,22 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Lista de tus canciones
+    // --- 1. CONFIGURACIÓN DE MÚSICA ---
     const canciones = [
         'musica/cancion1.mp3',
         'musica/cancion2.mp3',
         'musica/cancion3.mp3'
-        // ... añade más aquí
     ];
-
-    // 2. Obtener el reproductor de audio
     const audioPlayer = document.getElementById('audio-player');
-    
-    // Esta variable 'bandera' nos dice si la música ya ha empezado
-    let musicStarted = false; 
+    let musicStarted = false;
     let cancionActualIndex = -1;
 
-    // 3. Función para tocar una canción aleatoria
     function playRandomSong() {
+        if (musicStarted) return; // No hacer nada si ya está sonando
+        
         let nuevoIndex;
         do {
             nuevoIndex = Math.floor(Math.random() * canciones.length);
@@ -25,32 +21,80 @@ document.addEventListener('DOMContentLoaded', () => {
         cancionActualIndex = nuevoIndex;
         audioPlayer.src = canciones[cancionActualIndex];
         audioPlayer.play();
-        
-        // Marcamos que la música ya ha empezado
-        musicStarted = true; 
+        musicStarted = true;
     }
 
-    // 4. Función para cuando una canción termina
-    audioPlayer.addEventListener('ended', playRandomSong);
+    // Poner otra canción cuando termine
+    audioPlayer.addEventListener('ended', () => {
+        musicStarted = false; // Permitir que la función elija una nueva
+        playRandomSong();
+    });
 
-    // 5. ¡LA MAGIA! 
-    // Buscamos TODAS las cartas (todos los enlaces con la clase 'carta-link')
-    const cardLinks = document.querySelectorAll('.carta-link');
 
-    // Añadimos un "oyente" de clic a CADA carta
-    cardLinks.forEach(link => {
-        
-        link.addEventListener('click', () => {
-            // Revisamos nuestra 'bandera'
-            // Si la música NO ha empezado...
+    // --- 2. CONFIGURACIÓN DE NAVEGACIÓN (LA MAGIA) ---
+    const vistaListaCartas = document.getElementById('vista-lista-cartas');
+    const vistaCartaIndividual = document.getElementById('vista-carta-individual');
+    const todosLosEnlacesDeCartas = document.querySelectorAll('.carta-link');
+
+    // Función para mostrar la lista de cartas (oculta la carta)
+    function mostrarListaCartas() {
+        vistaCartaIndividual.style.display = 'none'; // Oculta la carta
+        vistaCartaIndividual.innerHTML = ''; // Limpia el contenido
+        vistaListaCartas.style.display = 'block'; // Muestra la lista
+    }
+
+    // Función para cargar y mostrar una carta
+    async function cargarCarta(url) {
+        try {
+            // Inicia la música si es el primer clic
             if (!musicStarted) {
-                // ...¡la iniciamos!
                 playRandomSong();
             }
-            // Si 'musicStarted' es 'true', este bloque se ignora
-            // y la música simplemente sigue sonando.
-        });
 
+            // 1. Carga el archivo HTML de la carta en segundo plano
+            const response = await fetch(url);
+            if (!response.ok) throw new Error('No se pudo cargar la carta.');
+            const cartaHtmlCompleto = await response.text();
+
+            // 2. Extrae SÓLO el contenido que queremos de ese HTML
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(cartaHtmlCompleto, 'text/html');
+            const contenidoCarta = doc.querySelector('.carta-individual');
+            const botonVolver = doc.querySelector('.btn-volver');
+
+            if (!contenidoCarta || !botonVolver) {
+                throw new Error('El archivo de la carta no tiene el formato correcto.');
+            }
+
+            // 3. Inserta el contenido y el botón en nuestra "Vista 2"
+            vistaCartaIndividual.innerHTML = ''; // Limpia por si acaso
+            vistaCartaIndividual.appendChild(contenidoCarta);
+            vistaCartaIndividual.appendChild(botonVolver);
+
+            // 4. Oculta la lista de cartas (Vista 1) y muestra la carta (Vista 2)
+            vistaListaCartas.style.display = 'none';
+            vistaCartaIndividual.style.display = 'block';
+
+            // 5. IMPORTANTE: Le damos al nuevo "botón volver" su función
+            // Este botón ahora no recarga la página, solo llama a nuestra función
+            vistaCartaIndividual.querySelector('.btn-volver').addEventListener('click', (e) => {
+                e.preventDefault(); // Previene que el enlace 'href' funcione
+                mostrarListaCartas();
+            });
+
+        } catch (error) {
+            console.error('Error al cargar la carta:', error);
+            alert('Error al cargar la carta. Revisa la consola.');
+        }
+    }
+
+    // 6. Asigna la función de cargar a CADA enlace de carta
+    todosLosEnlacesDeCartas.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault(); // ¡PREVIENE que el enlace abra una página nueva!
+            const urlDeLaCarta = link.getAttribute('href');
+            cargarCarta(urlDeLaCarta);
+        });
     });
 
 });
