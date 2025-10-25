@@ -1,50 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Una Sorpresa para Ti ❤️</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
-    <audio id="birthday-song" loop>
-    <source src="cancion.mp3" type="audio/mpeg">
-    Tu navegador no soporta el elemento de audio.
-</audio>
-    <div class="container">
-        <div class="initial-content">
-            <h1>¡Hola, mi amor! 💖</h1>
-            <p>Tengo algo muy especial que decirte...</p>
-            <button id="open-letter-btn">Haz Clic Aquí 💌</button>
-        </div>
 
-        <div id="letter-content" class="letter-hidden">
-            <h2>🎉 ¡Feliz Cumpleaños, Miimy! 🎉</h2>
-            <p>
-                Hoy es un día increíblemente especial porque celebra la existencia de la persona
-                que ilumina mi mundo. Desde que llegaste a mi vida, todo ha sido más brillante,
-                más feliz y lleno de amor.
-            </p>
-            <p>
-                Admiro tu fuerza, tu bondad, tu inteligencia y esa sonrisa que tiene el poder
-                de arreglar cualquiera de mis días. Eres mi compañera, mi mejor amiga y el amor
-                de mi vida.
-            </p>
-            <p>
-                Quiero que sepas que te amo más de lo que las palabras pueden expresar. Gracias por
-                cada momento, cada risa y cada sueño compartido.
-            </p>
-            <p>
-                Con todo mi amor,<br>
-                <strong>Kevin <3 </strong>
-            </p>
-        </div>
+    <div class="container">
+        <h1>Nuestras Cartas ✨</h1>
+        <p>Un lugarcito para guardar todo lo que te escribo.</p>
+
+        <audio id="audio-player"></audio>
+
+        <div class="lista-cartas">
+
+            <a href="cartas/carta-2.html" class="carta-link" style="animation-delay: 0.1s;" target="_blank">
+                <h2>Carta #2: Nuestro Aniversario</h2>
+                <p>23 de octubre de 2025</p>
+            </a>
+            <a href="cartas/carta-1.html" class="carta-link" style="animation-delay: 0.2s;" target="_blank">
+                <h2>Carta #1: La primera que te escribo aquí</h2>
+                <p>20 de octubre de 2025</p>
+            </a>
+            </div>
     </div>
-    <script src="script.js"></script>
+
+    <script src="script.js"></script> 
 </body>
 </html>
-
-
