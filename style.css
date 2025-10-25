@@ -4,18 +4,18 @@
 /* --- Estilos Generales --- */
 body {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #fce3ec, #ffe8cc); /* Un fondo degradado suave */
+    background: linear-gradient(135deg, #fce3ec, #ffe8cc);
     margin: 0;
-    padding: 20px;
+    padding: 15px; /* Reducimos el padding general para móviles */
     color: #333;
+    box-sizing: border-box; /* Buena práctica para que el padding no afecte el ancho */
 }
-
 .container {
-    max-width: 800px;
+    width: 100%; /* El contenedor usa todo el ancho en móvil */
+    max-width: 800px; /* Mantiene el límite para escritorio */
     margin: 0 auto;
     text-align: center;
 }
-
 /* --- Título Principal --- */
 h1 {
     font-family: 'Pacifico', cursive; /* Fuente "escrita a mano" para el título */
@@ -186,11 +186,15 @@ h1 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-/* --- Estilo para el botón de música --- */
-#play-music-btn {
-    /* ... (borra todo lo que está aquí dentro) ... */
+/* --- Ajuste para el botón de volver duplicado --- */
+#vista-carta-individual .btn-volver {
+    /* Centramos el botón que está solo */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#play-music-btn:hover {
-    /* ... (y esto también) ... */
+#vista-carta-individual .btn-volver:first-child {
+    /* Añade espacio entre el botón de arriba y el texto de la carta */
+    margin-bottom: 25px; 
 }
