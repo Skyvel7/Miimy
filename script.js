@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. CONFIGURACIÓN DE MÚSICA ---
     const canciones = [
-        'musica/cancion1.mp3',
+        'musica/cancion11.mp3',
         'musica/cancion2.mp3',
         'musica/cancion3.mp3'
     ];

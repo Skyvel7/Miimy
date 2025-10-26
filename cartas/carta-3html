@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1 Año y 7 Meses ❤️</title>
+    <link rel="stylesheet" href="../style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+
+ <div class="container">
+    <div class="carta-individual">
+    
+        <h1>¡Feliz 1 Año y 7 Meses, Miimy! 💖</h1>
+        
+        <p class="fecha">25 de octubre de 2025</p>
+
+        <p>Mi amor,</p>
+
+        <p>
+            No sé cómo pasó el tiempo tan rápido, pero aquí estamos, celebrando
+            un año y siete meses juntos. ¡Y qué increíble ha sido cada día a tu lado!
+        </p>
+        
+        <p>
+            Contigo he aprendido lo que es amar de verdad, despertar con una sonrisa
+            y tener a alguien que me apoya en todo. Eres mi lugar feliz, 
+            mi cómplice y mi persona favorita en todo el mundo.
+        </p>
+        
+        <p>
+            Gracias por estos 19 meses de risas, aventuras y de construir algo 
+            tan bonito. No puedo esperar a ver todo lo que nos falta por vivir.
+        </p>
+
+        <p>
+            Te amo más de lo que te imaginas.
+        </p>
+        
+        <p>
+            Con todo mi amor,<br>
+            <strong>Kevin</strong>
+        </p>
+        
+        item <a href="../index.html" class="btn-volver">← Volver</a>
+  
+    </div>
+ </div>
+ 
+</body>
+</html>
