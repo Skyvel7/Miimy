@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misión de San Valentín</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="carta-individual" id="carta-juego">
+
+            <h1>💖 Misión: Atrapa mi amor 💖</h1>
+
+            <p>¡Hola mi vida! Para este San Valentín, tengo un reto para ti.</p>
+            <p>Atrapa todos los corazones y esquiva las caritas tristes. ¡Si consigues 50 puntos ganarás un mensaje
+                especial!</p>
+
+            <div id="game-container">
+                <canvas id="gameCanvas" width="320" height="400"></canvas>
+                <div id="game-ui">
+                    <p id="score-display">Puntos: 0</p>
+                    <button id="btn-start-game">¡Jugar!</button>
+                    <div id="game-over" style="display: none;">
+                        <p id="game-message"></p>
+                        <button id="btn-restart-game">Intentar de nuevo</button>
+                    </div>
+                    <div id="game-won" style="display: none;">
+                        <p>¡Ganaste! 🎉</p>
+                        <p>Eres la mejor atrapando mi amor. Te amo muchísimo, ¡feliz San Valentín! ❤️</p>
+                        <button id="btn-restart-game-won">Jugar otra vez</button>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <a href="../index.html" class="btn-volver">← Volver a todas las cartas</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
