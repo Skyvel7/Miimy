@@ -107,7 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function stopGame() {
         gameActive = false;
         clearInterval(gameInterval);
-        document.getElementById('game-ui').style.pointerEvents = 'auto';
+        const gameUI = document.getElementById('game-ui');
+        if (gameUI) {
+            gameUI.style.pointerEvents = 'auto';
+        }
     }
 
     function movePlayer(e) {
