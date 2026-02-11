@@ -262,10 +262,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 5. Asigna la función de "volver"
             vistaCartaIndividual.querySelectorAll('.btn-volver').forEach(boton => {
-                boton.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    mostrarListaCartas();
-                });
+                // Si es el botón de jugar de nuevo
+                if (boton.id === 'btn-replay-game') {
+                    boton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        cargarCarta('cartas/carta-san-valentin.html');
+                    });
+                } else {
+                    // Si es el botón de volver normal
+                    boton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        mostrarListaCartas();
+                    });
+                }
             });
 
         } catch (error) {
