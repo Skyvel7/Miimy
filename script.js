@@ -179,10 +179,25 @@ document.addEventListener('DOMContentLoaded', () => {
     function gameWin() {
         stopGame();
         document.getElementById('game-won').style.display = 'block';
+
+        // --- GUARDAR PROGRESO ---
+        localStorage.setItem('valentin_won', 'true');
+
+        // Cambiar comportamiento del botón para ir a la carta
+        const btnWon = document.getElementById('btn-restart-game-won');
+        if (btnWon) {
+            btnWon.innerText = "💌 Leer mi Carta 💌";
+            // Clonamos el botón para eliminar listeners anteriores (como startGame)
+            const newBtn = btnWon.cloneNode(true);
+            btnWon.parentNode.replaceChild(newBtn, btnWon);
+
+            newBtn.addEventListener('click', () => {
+                cargarCarta('cartas/carta-san-valentin-recompensa.html');
+            });
+        }
     }
 
     // --- 4. CONFIGURACIÓN DE NAVEGACIÓN (MODIFICADA) ---
-    // ... (El resto del código de navegación se mantiene, pero actualizamos cargarCarta)
 
     // Función para mostrar la lista de cartas (oculta la carta)
     function mostrarListaCartas() {
@@ -223,9 +238,12 @@ document.addEventListener('DOMContentLoaded', () => {
             vistaCartaIndividual.style.display = 'block';
 
             // --- INICIALIZAR JUEGO SI EXISTE ---
-            if (document.getElementById('gameCanvas')) {
-                initGame();
-            }
+            // Pequeño timeout para asegurar que el DOM se ha pintado
+            setTimeout(() => {
+                if (document.getElementById('gameCanvas')) {
+                    initGame();
+                }
+            }, 50);
 
             // 5. Asigna la función de "volver"
             vistaCartaIndividual.querySelectorAll('.btn-volver').forEach(boton => {
@@ -245,7 +263,18 @@ document.addEventListener('DOMContentLoaded', () => {
     todosLosEnlacesDeCartas.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const urlDeLaCarta = link.getAttribute('href');
+            let urlDeLaCarta = link.getAttribute('href');
+
+            // --- VERIFICACIÓN DE RECOMPENSA ---
+            // Si intenta abrir la carta de San Valentín Y ya ganó antes...
+            if (urlDeLaCarta.includes('carta-san-valentin.html')) {
+                const yaGano = localStorage.getItem('valentin_won') === 'true';
+                if (yaGano) {
+                    // ... le mostramos directamente la carta de recompensa
+                    urlDeLaCarta = 'cartas/carta-san-valentin-recompensa.html';
+                }
+            }
+
             cargarCarta(urlDeLaCarta);
         });
     });
