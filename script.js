@@ -64,15 +64,27 @@ document.addEventListener('DOMContentLoaded', () => {
         if (btnRestartWon) btnRestartWon.addEventListener('click', startGame);
 
         // Controles Táctiles y Ratón
-        canvas.addEventListener('mousemove', movePlayer);
-        canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
+        // Controles Táctiles y Ratón
+        const handleInput = (clientX) => {
             const rect = canvas.getBoundingClientRect();
-            const touchX = e.touches[0].clientX - rect.left;
+            const scaleX = canvas.width / rect.width; // Factor de escala por si el CSS reduce el canvas
+            const touchX = (clientX - rect.left) * scaleX;
+
             player.x = touchX - player.width / 2;
             // Limites
             if (player.x < 0) player.x = 0;
             if (player.x > canvas.width - player.width) player.x = canvas.width - player.width;
+        };
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!gameActive) return;
+            handleInput(e.clientX);
+        });
+
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (!gameActive) return;
+            handleInput(e.touches[0].clientX);
         }, { passive: false });
     }
 
