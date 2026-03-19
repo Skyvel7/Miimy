@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. CONFIGURACIÓN DE MÚSICA ---
     const canciones = [
-        'musica/cancion3.mp3'
+        'musica/cancion4.mp3'
 
     ];
     const audioPlayer = document.getElementById('audio-player');
@@ -304,13 +304,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- INSTAGRAM UI LOGIC ---
-    
+
     // Funcionalidad de dar "Me gusta"
     document.querySelectorAll('.like-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
             e.stopPropagation(); // Evitar comportamientos extraños
             this.classList.toggle('liked');
-            if(this.classList.contains('liked')) {
+            if (this.classList.contains('liked')) {
                 this.setAttribute('fill', '#ed4956');
                 this.setAttribute('stroke', '#ed4956');
             } else {
