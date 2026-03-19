@@ -303,4 +303,37 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- INSTAGRAM UI LOGIC ---
+    
+    // Funcionalidad de dar "Me gusta"
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Evitar comportamientos extraños
+            this.classList.toggle('liked');
+            if(this.classList.contains('liked')) {
+                this.setAttribute('fill', '#ed4956');
+                this.setAttribute('stroke', '#ed4956');
+            } else {
+                this.setAttribute('fill', 'none');
+                this.setAttribute('stroke', 'currentColor');
+            }
+        });
+    });
+
+    // Funcionalidad de la historia de música
+    const playMusicStory = document.getElementById('play-music-story');
+    if (playMusicStory) {
+        playMusicStory.addEventListener('click', () => {
+            const ring = playMusicStory.querySelector('.ig-story-ring');
+            if (!musicStarted) {
+                playRandomSong();
+                ring.classList.add('playing');
+            } else {
+                audioPlayer.pause();
+                musicStarted = false;
+                ring.classList.remove('playing');
+            }
+        });
+    }
+
 });
