@@ -226,6 +226,51 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* --- Carousels --- */
+.ig-post-carousel-container {
+    position: relative;
+    width: 100%;
+}
+
+.ig-post-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -webkit-overflow-scrolling: touch;
+}
+
+.ig-post-carousel::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.ig-post-carousel img {
+    flex: 0 0 100%;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    scroll-snap-align: start;
+}
+
+.ig-carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 0;
+}
+
+.ig-carousel-dots .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #dbdbdb;
+    transition: background-color 0.3s;
+}
+
+.ig-carousel-dots .dot.active {
+    background-color: #0095f6; /* Azul Instagram */
+}
+
 /* Post Actions */
 .ig-post-actions {
     padding: 10px 15px;

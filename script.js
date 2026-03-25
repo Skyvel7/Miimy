@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. CONFIGURACIÓN DE MÚSICA ---
     const canciones = [
-        'musica/cancion4.mp3'
+        'musica/cancion5.mp3'
 
     ];
     const audioPlayer = document.getElementById('audio-player');
@@ -335,5 +335,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Funcionalidad de Carruseles (Dots)
+    document.querySelectorAll('.ig-post-carousel-container').forEach(container => {
+        const carousel = container.querySelector('.ig-post-carousel');
+        const dots = container.querySelectorAll('.ig-carousel-dots .dot');
+
+        if (carousel && dots.length > 0) {
+            carousel.addEventListener('scroll', () => {
+                const scrollLeft = carousel.scrollLeft;
+                const clientWidth = carousel.clientWidth;
+                // Calculamos el índice de la foto actual redondeando la posición
+                const activeIndex = Math.round(scrollLeft / clientWidth);
+                
+                dots.forEach((dot, index) => {
+                    if (index === activeIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            });
+        }
+    });
 
 });
